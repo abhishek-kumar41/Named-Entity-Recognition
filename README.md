@@ -21,6 +21,7 @@ A total of 17 entity tags as:
 ![image](https://user-images.githubusercontent.com/79351706/135356729-20956609-8534-467c-b803-6bd93dc02387.png)
 
 Confusion Matrix:
+
 ![image](https://user-images.githubusercontent.com/79351706/135356762-29886892-5c2f-47bd-86e8-58601390dbcc.png)
 
 
