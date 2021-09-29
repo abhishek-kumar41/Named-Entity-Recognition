@@ -6,7 +6,7 @@ Objective: To locate and classify named entities in text into predefined categor
 
 ![image](https://user-images.githubusercontent.com/79351706/135356422-5300d8be-5010-4afd-a241-50a384136cc9.png)
 
-**Dataset:** The Groningen Meaning Bank (GMB) corpus which is tagged, annotated and built specifically to train the classifier to predict named entities such as name, location, etc. The dataset consists of four columns: Sentence #, Word, POS (Parts of Speech) and Tag. The tags cover 8 types of named entities: 
+**Dataset:** [The Groningen Meaning Bank (GMB) corpus](https://www.kaggle.com/abhinavwalia95/entity-annotated-corpus) which is tagged, annotated and built specifically to train the classifier to predict named entities such as name, location, etc. The dataset consists of four columns: Sentence #, Word, POS (Parts of Speech) and Tag. The tags cover 8 types of named entities: 
 ![image](https://user-images.githubusercontent.com/79351706/135356564-067851e4-f3b1-469a-88b1-0f3b36dda1cf.png)
 
 Entity tags are encoded using a BIO annotation scheme, where each entity label is prefixed with either B or I letter. A “B-” tag indicates the first term of a new entity (or only term of a single-term entity), while subsequent terms in an entity have an “I-” tag. For example, “New York” is tagged as ["B-geo", "I-geo"], “London” is tagged as "B-geo", “World War II” is tagged as [“B-eve”, “I-eve”, “I-eve”], etc. 
