@@ -27,7 +27,6 @@ print("Tags:", tags)
 n_tags = len(tags)
 print("Number of Labels: ", n_tags)
 
-
 def get_sentences(data):
     agg_func = lambda s: [(w, p, t) for w, p, t in zip(s["Word"].values.tolist(),
                                                            s["POS"].values.tolist(),
@@ -35,7 +34,6 @@ def get_sentences(data):
     grouped = data.groupby("Sentence #").apply(agg_func)
     sentences = [s for s in grouped]
     return sentences
-
 
 sentences = get_sentences(data)
 
@@ -65,11 +63,9 @@ y = [np.eye(n_tags + 1)[i] for i in y]
 X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.1)
 print(X_tr.shape), print(X_te.shape), print(np.array(y_tr).shape), print(np.array(y_te).shape)
 
-
 model = keras.Sequential()
 model.add(layers.Embedding(input_dim=n_words+2, output_dim=EMBEDDING, # n_words + 2 (PAD & UNK)
                   input_length=MAX_LEN))
-
 model.add(layers.Bidirectional(layers.LSTM(128, return_sequences=True), input_shape=(800,13)))
 model.add(layers.Dropout(0.1))
 model.add(layers.Bidirectional(layers.LSTM(128, return_sequences=True), input_shape=(800,128)))
@@ -88,13 +84,10 @@ history = model.fit(X_tr, np.array(y_tr), batch_size=BATCH_SIZE, epochs=EPOCHS, 
 pred_cat = model.predict(X_te)
 pred = np.argmax(pred_cat, axis=-1)
 print(pred)
-
 y_te_true = np.argmax(y_te, -1)
-
 print(pred.shape)
 print(y_te_true)
 print(np.array(y_te_true).shape)
-
 
 # Converting the index to tag
 pred_tag = []
@@ -115,7 +108,6 @@ for row in y_te_true:
 report = classification_report(y_pred=pred_tag, y_true=y_te_true_tag)
 print(report)
 
-
 # choose a random number between 0 and len(X_te)
 i = np.random.randint(0,X_te.shape[0]) 
 p = model.predict(np.array([X_te[i]]))
@@ -130,7 +122,6 @@ print(30 * "=")
 for w, t, pred in zip(X_te[i], true, p[0]):
     if w != 0:
         print("{:15}: {:5} {}".format(words[w-2], idx2tag[t], idx2tag[pred]))
-
 
 cnf_matrix = confusion_matrix(y_te_true_tag, pred_tag)
 print(cnf_matrix)
@@ -150,15 +141,7 @@ plt.figure(figsize = (16,12))
 # sn.set(font_scale=0.8) # for label size
 sn.heatmap(df_cm, annot=True)
 
-
 # sn.heatmap(df_cm, annot=True, annot_kws={"size": 16}) # font size
-
 # plt.show()
-
 # plt.matshow(cnf_matrix)
 # plt.show()
-
-
-
-
-
